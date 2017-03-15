@@ -2,7 +2,9 @@
 <head>
     <style type="text/css">
         body{
-          background-image: url(C:\Users\Ilias\Desktop\Cours\S8\WebApplication\StarWars\images);
+          /*background-image: url(images/wallpaper.jpg);*/
+         /*background-image: url(../images/background1.png);*/
+            background-size: cover;
         }
         .encadrer {
             border: solid black 1px;
@@ -30,13 +32,13 @@
 </head>
 
 <body>
-    <h2>Exercice 1: </h2>
+    <h2>Exercice 1: Generate the quote of the actor </h2>
     <div id="root_1"></div>
-    <h2>Exercice 2: </h2>
+    <h2>Exercice 2: Generate a random quote</h2>
     <div id="root_2"></div>
-    <h2>Exercice 3: </h2>
+    <h2>Exercice 3: Return the author of the quote</h2>
     <div id="root_3"></div>
-    <h2>Exercice 4: </h2>
+    <h2>Exercice 4: Generate randomly from the data a quote and it's author</h2>
     <div id="root_4"></div>
 
     <script type="text/javascript" src="../StarWars/react/react.js"></script>
@@ -46,37 +48,48 @@
 
         var letters = [{
               'author': '- Yoda ',
-              'quote': 'When 900 years old, you reach… Look as good, you will not.'
+              'quote': 'When 900 years old, you reach… Look as good, you will not.',
+              'image' : 'images/yoda.png'
             }, {
               'author': '- Senator palpatine',
-              'quote': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.'
+              'quote': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
+              'image' : 'images/senator_palatine.jpg'
             }, {
               'author': '- Count Dooku',
-              'quote': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.'
+              'quote': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
+              'image' : 'images/count_dooku.jpg'
             }, {
               'author': '- Darth vader',
-              'quote': 'Luke, you can destroy the Emperor. He has foreseen this. It is your destiny. Join me, and together we can rule the galaxy as father and son.'
+              'quote': 'Luke, you can destroy the Emperor. He has foreseen this. It is your destiny. Join me, and together we can rule the galaxy as father and son.',
+              'image' : 'images/dark_vador.jpg'
             }, {
               'author': '- Princess leila',
-              'quote': 'Aren\'t you a little short for a storm trooper?'
+              'quote': 'Aren\'t you a little short for a storm trooper?',
+              'image' : 'images/princesse_leia.jpg'
             }, {
               'author': '- Yoda  ',
-              'quote': 'Mmm. Lost a planet, Master Obi-Wan has. How embarrassing.'
+              'quote': 'Mmm. Lost a planet, Master Obi-Wan has. How embarrassing.',
+              'image' : 'images/yoda.png'
             }, {
               'author': '- Qui-Gon Jinn',
-              'quote': 'Your focus determines your reality'
+              'quote': 'Your focus determines your reality',
+              'image' : 'images/Qui-Gon Jinn.jpg'
             }, {
               'author': '- Yoda   ',
-              'quote': 'Do. Or do not. There is no try.'
+              'quote': 'Do. Or do not. There is no try.',
+              'image' : 'images/yoda.png'
             }, {
               'author': '- Obi-Wan-Kenobi',
-              'quote': 'In my experience there is no such thing as luck.'
+              'quote': 'In my experience there is no such thing as luck.',
+              'image' : 'images/Obi-Wan-Kenobi.jpg'
             }, {
               'author': '- Yoda    ',
-              'quote': 'If once you start down the dark side, forever will it dominate your destiney, consume you it will, as it did Obi-Wan\'s apprentice'
+              'quote': 'If once you start down the dark side, forever will it dominate your destiney, consume you it will, as it did Obi-Wan\'s apprentice',
+              'image' : 'images/yoda.png'
             }, {
               'author': '- Darth Vader',
-              'quote': 'The Force is strong with this one.'
+              'quote': 'The Force is strong with this one.',
+              'image' : 'images/dark_vador.jpg'
             }];
 
         var scoreOf = {};
@@ -140,7 +153,7 @@
 
             render : function () {
                 var classname = this.state.selected ? 'selected' : '';
-                return (<div className={classname} onClick={this.handleClick}>{this.props.itemValue.author}</div>);
+                return (<div className={classname} onClick={this.handleClick}><img src={this.props.itemValue.image} width="70" height="70"/></div>);
             },
 
             getInitialState : function () {
@@ -205,7 +218,7 @@
 
               return (<div>
                   {letters.map(function(item) {
-                      return <Letter itemValue={item.author} whenClick={handler} />;
+                      return <Letter itemValue={item} whenClick={handler} />;
                   })}
               </div>);
           },
@@ -216,7 +229,7 @@
 
           render : function () {
               var classname = this.state.selected ? 'selected' : '';
-              return (<div className={classname} onClick={this.handleClick}>{this.props.itemValue}</div>);
+              return (<div className={classname} onClick={this.handleClick}><img src={this.props.itemValue.image} width="70" height="70"/></div>);
           },
 
           getInitialState : function () {
@@ -235,7 +248,7 @@
           render : function () {
 
               return (<div>
-                 <h3>{this.props.letter} : {this.props.rand_chain} </h3>
+                 <h3>{this.props.letter.author} : {this.props.rand_chain} </h3>
               </div>);
           },
 
@@ -306,7 +319,7 @@
             render : function () {
 
                 return (<div>
-                   <h3>Quote from: {this.props.letter.author} </h3>
+                   <h3>Quote from: <img src={this.props.letter.image} width="70" height="70"/> </h3>
                 </div>);
             },
 
